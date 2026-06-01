@@ -51,6 +51,16 @@ function dessinerGrille(){
 
 }
 
+function verifierFin(){
+    if(thor.initialTX >= 40 || thor.initialTX < 0 || thor.initialTY >= 18 || thor.initialTY < 0){
+        alert("Vous avez perdu");
+    }
+
+    if(thor.initialTX === lightX && thor.initialTY === lightY){
+        alert("Vous avez gagné");
+    }
+}
+
 
 function dessinerJeu(){
     dessinerGrille();
@@ -79,64 +89,95 @@ select.addEventListener("change", function(){
     case "N":
         thor.initialTY -=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "NE":
         thor.initialTX +=1;
         thor.initialTY -=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "E":
         thor.initialTX +=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "SE":
         thor.initialTX +=1;
         thor.initialTY +=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "S":
         thor.initialTY +=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "SW":
         thor.initialTX -=1;
         thor.initialTY +=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "W":
         thor.initialTX -=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     case "NW":
         thor.initialTX -=1;
         thor.initialTY -=1;
         dessinerJeu();
+        verifierFin();
         select.value = "choisir une direction";
         break; 
     default:
         console.log("sorry");
 }
-if(thor.initialTX >= 40 || thor.initialTX < 0){
-    alert("Vous avez perdu");
 
-    
-}
-if(thor.initialTY >= 18 || thor.initialTY< 0){
-        alert("Vous avez perdu");
+})
+
+document.addEventListener("keydown", function(event){
+    if(event.defaultPrevented){
+        return;
     }
 
-if(thor.initialTX === lightX && thor.initialTY === lightY){
-    alert("Vous avez gagné");
+    switch(event.key){
+    case "ArrowDown":
+        thor.initialTY+=1;
+        dessinerJeu();
+        verifierFin();
+        break;
+    case "ArrowUp":
+        thor.initialTY-=1;
+        dessinerJeu();
+        verifierFin();
+        break;
+    case "ArrowLeft":
+        thor.initialTX-=1;
+        dessinerJeu();
+        verifierFin();
+        break;
+    case "ArrowRight":
+        thor.initialTX+=1;
+        dessinerJeu();
+        verifierFin();
+        break;
+    default:
+        console.log("sorry");
 }
 
 })
+
+
+
 
 
 
